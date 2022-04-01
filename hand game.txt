@@ -1,0 +1,72 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+void main() {
+  runApp(Home());
+}
+
+class Home extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Mypage(),
+    );
+  }
+}
+
+class Mypage extends StatefulWidget {
+
+
+  @override
+  State<Mypage> createState() => _MypageState();
+}
+
+class _MypageState extends State<Mypage> {
+
+  String rndred = "x";
+  String rndblue = "x";
+
+  @override
+  Widget build(BuildContext context) {
+    return  Scaffold(
+      backgroundColor: Colors.black87,
+      body: Container(
+        margin: EdgeInsets.all(10),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+
+
+               ElevatedButton(
+                 style: ElevatedButton.styleFrom(padding: EdgeInsets.all(35), primary: Colors.red),
+                 onPressed: () {
+                   setState(() {
+                     rndred = (Random().nextInt(3)+1).toString();
+                   });
+                 }, 
+                 child: Text("Tap", style: TextStyle(fontSize: 20),)),
+
+               (rndred == "x" || rndred == "1" || rndred ==  "2") ? Icon( rndred == "x" ? Icons.question_mark_rounded : rndred == "1" ? Icons.back_hand_rounded : rndred == "2" ? Icons.cut_rounded : null , size: 80,color: Colors.red.shade400) : Image.asset("assets/img/fist.png", width: 85, height: 81,color: Colors.red.shade400),
+               (rndblue =="x" || rndblue == "1"|| rndblue == "2") ? Icon( rndblue == "x" ? Icons.question_mark_rounded :rndblue =="1" ? Icons.back_hand_rounded : rndblue =="2" ? Icons.cut_rounded : null , size: 80,color:Colors.blue.shade400) : Image.asset("assets/img/fist.png", width: 85, height: 81,color:Colors.blue.shade400),
+                
+               ElevatedButton(
+                 style: ElevatedButton.styleFrom(padding: EdgeInsets.all(35), primary: Colors.blue),
+                 onPressed: () {
+                     setState(() {
+                     rndblue = (Random().nextInt(3)+1).toString();
+                   });
+                 }, 
+                 child: Text("Tap", style: TextStyle(fontSize: 20),),
+                 ),
+
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+}
